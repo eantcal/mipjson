@@ -1,0 +1,3 @@
+[submodule "mip/miptknzr"]
+	path = mip/miptknzr
+	url = https://github.com/google/miptknzr.git
