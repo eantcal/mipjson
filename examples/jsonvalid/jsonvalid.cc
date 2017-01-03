@@ -48,7 +48,7 @@ int main(int argc, mip::char_t* argv[])
 
     if (!is.is_open()) {
         std::_cerr << _T("Cannot open ") << filename << std::endl;
-        return false;
+        return 1;
     }
 
 #ifdef _UNICODE
