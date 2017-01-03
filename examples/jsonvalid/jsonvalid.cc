@@ -65,7 +65,7 @@ int main(int argc, mip::char_t* argv[])
 
     if (!is.is_open() || is.bad()) {
         std::cerr << _T("error reading the input stream");
-        return false;
+        return 1;
     }
     
     std::_cout << _T("Parsing ...") << std::endl << std::endl;
