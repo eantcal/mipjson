@@ -34,9 +34,9 @@ public:
 
 protected:
 
-    std::unique_ptr<base_token_t> get_token(_istream & is);
+    std::unique_ptr<token_t> get_token(_istream & is);
 
-    result_t parse_number(const base_token_t & tkn, _istream & is, _ostream & err);
+    result_t parse_number(const token_t & tkn, _istream & is, _ostream & err);
     result_t parse_object(_istream & is, _ostream & err);
     result_t parse_array(_istream & is, _ostream & err);
 
@@ -56,9 +56,9 @@ private:
     size_t _indent_spc = 2;
 
     struct with {
-        std::unique_ptr<base_token_t>& _tkn;
+        std::unique_ptr<token_t>& _tkn;
 
-        with(std::unique_ptr<base_token_t>& tkn) noexcept : _tkn(tkn) {}
+        with(std::unique_ptr<token_t>& tkn) noexcept : _tkn(tkn) {}
 
         friend _ostream & operator<<(_ostream &os, const with & obj) {
             if (obj._tkn) {

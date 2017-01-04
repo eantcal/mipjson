@@ -51,7 +51,7 @@ json_parser_t::json_parser_t(_ostream * logger, size_t indent_spc) :
 
 /* -------------------------------------------------------------------------- */
 
-std::unique_ptr<base_token_t> json_parser_t::get_token(_istream & is) 
+std::unique_ptr<token_t> json_parser_t::get_token(_istream & is) 
 {
     while (!is.bad()) {
         auto tkn = _tknzr->next(is);
@@ -81,7 +81,7 @@ std::unique_ptr<base_token_t> json_parser_t::get_token(_istream & is)
 /* -------------------------------------------------------------------------- */
 
 json_parser_t::result_t json_parser_t::parse_number(
-    const base_token_t & tkn, 
+    const token_t & tkn, 
     _istream & is, 
     _ostream & err)
 {
@@ -466,7 +466,7 @@ json_parser_t::result_t json_parser_t::parse(_istream & is, _ostream & err)
     }
 
 
-    if (tkn->type() != base_token_t::tcl_t::ATOM ||
+    if (tkn->type() != token_t::tcl_t::ATOM ||
             (tkn->value() != _T("{") && (tkn->value() != _T("["))))
     {
         err << err_curly_brace_expected() << with(tkn);

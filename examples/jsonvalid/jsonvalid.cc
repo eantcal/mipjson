@@ -1,5 +1,5 @@
 //  
-// This file is part of MipTknzr Library Project
+// This file is part of MipJson Library Project
 // Copyright (c) Antonino Calderone (antonino.calderone@gmail.com)
 // All rights reserved.  
 // Licensed under the MIT License. 
@@ -48,7 +48,7 @@ int main(int argc, mip::char_t* argv[])
 
     if (!is.is_open()) {
         std::_cerr << _T("Cannot open ") << filename << std::endl;
-        return false;
+        return 1;
     }
 
 #ifdef _UNICODE
@@ -65,7 +65,7 @@ int main(int argc, mip::char_t* argv[])
 
     if (!is.is_open() || is.bad()) {
         std::cerr << _T("error reading the input stream");
-        return false;
+        return 1;
     }
     
     std::_cout << _T("Parsing ...") << std::endl << std::endl;
