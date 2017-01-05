@@ -1,0 +1,28 @@
+#! clean build -dtSa "-O2 -fPIC"
+
+name: mipjson
+version: master
+scm: https://github.com/eantcal/mipjson.git
+parent: tknzrlib_deps
+lang: cpp
+inc: include
+src: lib
+mode: shared
+install: build/bin
+
+profile:
+- name: tknzrlib_deps
+  dep:
+  - name: miptknzr
+    scm:  https://github.com/eantcal/miptknzr.git
+    local: mip/miptknzr
+
+- name: jsonlib_deps
+  dep:
+  - name: mipjsonparser
+    local: .
+
+- name: jsonvalid
+  inc: include mip/miptknzr/include
+  main: examples/jsonvalid/jsonvalid.cc
+  self: jsonlib_deps
