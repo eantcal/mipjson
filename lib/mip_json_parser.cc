@@ -53,7 +53,7 @@ json_parser_t::json_parser_t(_ostream * logger, size_t indent_spc) :
 
 std::unique_ptr<token_t> json_parser_t::get_token(_istream & is) 
 {
-    while (!is.bad()) {
+    while (!is.bad() && !_tknzr->eos(is)) {
         auto tkn = _tknzr->next(is);
 
         if (!tkn) {
@@ -66,8 +66,9 @@ std::unique_ptr<token_t> json_parser_t::get_token(_istream & is)
 
         // just ignore blanks, eol
         if (tkntype == token_t::tcl_t::BLANK ||
-                tkntype == token_t::tcl_t::END_OF_LINE ||
-                tkntype == token_t::tcl_t::COMMENT) {
+            tkntype == token_t::tcl_t::END_OF_LINE ||
+            tkntype == token_t::tcl_t::COMMENT) 
+        {
             continue;
         }
 
